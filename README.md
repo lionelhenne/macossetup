@@ -2,6 +2,8 @@
 
 Installation and configuration scripts for my macOS environment.  
 
+See my related dotfiles configuration: [macOS Dotfiles](https://github.com/lionelhenne/dotfiles)  
+
 ## Features  
 
 ### `setup.sh` – Base Configuration  
