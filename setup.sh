@@ -4,6 +4,8 @@ set -euo pipefail
 
 formulae='1password-cli atuin bat composer eza fd font-jetbrains-mono font-jetbrains-mono-nerd-font font-monaspace micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
+casks='adobe-creative-cloud appcleaner daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-edge microsoft-word microsoft-excel microsoft-powerpoint microsoft-auto-update openemu postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vlc'
+
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
@@ -115,6 +117,28 @@ create_sites_and_developer_folders() {
     fi
 }
 
+install_homebrew_casks() {
+    d_header "INSTALLING HOMEBREW CASKS."
+    /opt/homebrew/bin/brew install --cask ${casks} || d_error "Failed to install Homebrew casks."
+}
+
+create_file_with_remaining_apps() {
+    cd $HOME/Desktop
+    touch remaining_apps.html
+    cat <<EOF > remaining_apps.html
+    <p><a href="https://www.cyberghostvpn.com/">CyberGhost VPN</a></p>
+    <p><a href="https://www.devontechnologies.com/apps/freeware">EasyFind</a></p>
+    <p><a href="https://account.microsoft.com/services?lang=fr-FR#main-content-landing-react">Microsoft Office</a></p>
+    <p><a href="https://www.titanium-software.fr/fr/onyx.html">OnyX</a></p>
+    <p><a href="https://itsalin.com/appInfo/?id=pearcleaner">Pearcleaner</a></p>
+    <p><a href="https://www.jetbrains.com/fr-fr/phpstorm/">PhpStorm</a></p>
+    <p><a href="https://github.com/DigiDNA/Silicon">Silicon</a></p>
+    <p><a href="https://store.steampowered.com/?l=french">Steam</a></p>
+    <p><a href="https://www.thunderbird.net/fr/">Thunderbird</a></p>
+    <p><a href="https://ntfsformac.tuxera.com/">Tuxera NTFS</a></p>
+EOF
+}
+
 main() {
     install_xcode_command_line_tools && \
     install_homebrew && \
@@ -123,7 +147,9 @@ main() {
     backup_zprofile && \
     atuin_config && \
     install_dotfiles && \
-    create_sites_and_developer_folders
+    create_sites_and_developer_folders && \
+    install_homebrew_casks && \
+    create_file_with_remaining_apps
 }
 
 main && d_success "Installation completed successfully!" || d_error "Installation failed."
