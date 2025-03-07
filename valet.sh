@@ -92,6 +92,7 @@ main() {
     install_valet && \
     update_php_fpm_for_php83 && \
     install_phpmon && \
+    create_phpinfo_folder && \
     open -a "PHP Monitor"
     open -a "Google Chrome" "https://phpinfo.test/"
 }
