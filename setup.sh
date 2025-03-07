@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-formulae='1password-cli atuin bat composer eza fd font-jetbrains-mono font-jetbrains-mono-nerd-font micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
+formulae='1password-cli atuin bat composer eza fd font-jetbrains-mono font-jetbrains-mono-nerd-font font-monaspace micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
 red='\033[0;31m'
 green='\033[0;32m'

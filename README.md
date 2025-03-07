@@ -22,7 +22,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - **Shell Prompt**: [Starship](https://starship.rs/)  
 - **zsh Tools**: [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)  
 - **System Utilities**: [Atuin](https://atuin.sh/), [bat](https://github.com/sharkdp/bat), [eza](https://github.com/eza-community/eza), [fd](https://github.com/sharkdp/fd), [stow](https://www.gnu.org/software/stow/), [tlrc](https://tldr.sh/tlrc/), [tree](https://oldmanprogrammer.net/source.php?dir=projects/tree), [wget](https://www.gnu.org/software/wget/)  
-- **Fonts**: [JetBrains Mono](https://www.jetbrains.com/fr-fr/lp/mono/), [JetBrains Mono Nerd Font](https://www.nerdfonts.com/)  
+- **Fonts**: [JetBrains Mono](https://www.jetbrains.com/fr-fr/lp/mono/), [JetBrains Mono Nerd Font](https://www.nerdfonts.com/), [Monaspace](https://monaspace.githubnext.com/)  
 - **Terminal-based Text Editor**: [micro](https://micro-editor.github.io/)  
 
 ### `valet.sh` – Laravel Valet Configuration  
