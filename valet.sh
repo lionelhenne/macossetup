@@ -77,15 +77,18 @@ install_phpmon() {
 
 create_phpinfo_folder() {
     d_header "CREATING PHPINFO FOLDER."
-    if [ ! -d "$HOME/Sites" ]; then
-        mkdir -p "$HOME/Sites" || d_error "Failed to create directory $HOME/Sites."
-    fi
 
     if [ ! -d "$HOME/Sites/phpinfo" ]; then
         mkdir -p "$HOME/Sites/phpinfo" || d_error "Failed to create directory $HOME/Sites/phpinfo."
     fi
 
     echo "<?php phpinfo();" > "$HOME/Sites/phpinfo/index.php" || d_error "Failed to create phpinfo file."
+
+    cd "$HOME/Sites/phpinfo" || d_error "Directory $HOME/Sites/phpinfo does not exist."
+
+    $HOME/.config/composer/vendor/bin/valet link phpinfo || d_error "Failed to link phpinfo."
+
+    $HOME/.config/composer/vendor/bin/valet secure phpinfo || d_error "Failed to link phpinfo."
 }
 
 main() {
@@ -93,7 +96,7 @@ main() {
     update_php_fpm_for_php83 && \
     install_phpmon && \
     create_phpinfo_folder && \
-    open -a "PHP Monitor"
+    open -a "PHP Monitor" && \
     open -a "Google Chrome" "https://phpinfo.test/"
 }
 
