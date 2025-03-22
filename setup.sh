@@ -52,6 +52,13 @@ install_xcode_command_line_tools() {
     fi
 }
 
+setup_git() {
+    d_header "CONFIGURING GIT."
+    git config --global user.name "Lionel Henne"
+    git config --global user.email "lionelhenne@gmail.com"
+    git config --global core.editor "code --wait"
+}
+
 install_homebrew() {
     d_header "INSTALLING HOMEBREW AND FORMULAE."
     if ! command -v /opt/homebrew/bin/brew &>/dev/null; then
@@ -149,6 +156,7 @@ EOF
 
 main() {
     install_xcode_command_line_tools && \
+    setup_git && \
     install_homebrew && \
     lauch_brew_services && \
     install_node_with_fnm && \
