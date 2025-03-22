@@ -40,7 +40,7 @@ configure_system_defaults() {
     defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "false"
     defaults write com.apple.dock "autohide" -bool "true"
     defaults write com.apple.dock "expose-group-apps" -bool "true"
-    defaults write com.apple.dock ""minimize-to-application"" -bool "true"
+    defaults write com.apple.dock "minimize-to-application" -bool "true"
     defaults write com.apple.dock "mru-spaces" -bool "false"
     defaults write com.apple.dock "show-recents" -bool "false"
     defaults write com.apple.dock "showLaunchpadGestureEnabled" -bool "false"
