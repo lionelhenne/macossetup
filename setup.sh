@@ -2,9 +2,13 @@
 
 set -euo pipefail
 
-formulae='1password-cli atuin bat composer eza fd font-jetbrains-mono font-jetbrains-mono-nerd-font font-monaspace micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
+formulae='1password-cli atuin bat composer eza fd micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
-casks='adobe-creative-cloud appcleaner daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-edge microsoft-word microsoft-excel microsoft-powerpoint microsoft-auto-update openemu postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vlc'
+apps='adobe-creative-cloud appcleaner daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-auto-update microsoft-edge microsoft-excel microsoft-powerpoint microsoft-word openemu postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vlc'
+
+fonts='font-alegreya font-alegreya-sans font-alegreya-sans-sc font-alegreya-sc font-alfa-slab-one font-atkinson-hyperlegible-next font-biorhyme font-biorhyme-expanded font-bree-serif font-crimson-pro font-crimson-text font-gilbert font-inter font-inter-tight font-jetbrains-mono font-jetbrains-mono-nerd-font font-lato font-libre-baskerville font-libre-bodoni font-libre-caslon-display font-libre-caslon-text font-libre-franklin font-licorice font-lora font-merriweather font-merriweather-sans font-monaspace font-montserrat font-montserrat-alternates font-montserrat-underline font-noto-color-emoji font-noto-emoji font-noto-sans font-noto-sans-display font-noto-sans-jp font-noto-sans-mono font-noto-sans-symbols font-noto-serif font-noto-serif-display font-noto-serif-hentaigana font-noto-serif-jp font-nunito font-nunito-sans font-open-sans font-outfit font-playfair font-playfair-display font-playfair-display-sc font-raleway font-raleway-dots font-redacted font-redacted-script font-roboto font-roboto-condensed font-roboto-flex font-roboto-mono font-roboto-serif font-roboto-slab font-unica-one font-vollkorn font-vollkorn-sc font-yeseva-one'
+
+casks="${apps} ${fonts}"
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -126,16 +130,19 @@ create_file_with_remaining_apps() {
     cd $HOME/Desktop
     touch remaining_apps.html
     cat <<EOF > remaining_apps.html
-    <p><a href="https://www.cyberghostvpn.com/">CyberGhost VPN</a></p>
-    <p><a href="https://www.devontechnologies.com/apps/freeware">EasyFind</a></p>
-    <p><a href="https://account.microsoft.com/services?lang=fr-FR#main-content-landing-react">Microsoft Office</a></p>
-    <p><a href="https://www.titanium-software.fr/fr/onyx.html">OnyX</a></p>
-    <p><a href="https://itsalin.com/appInfo/?id=pearcleaner">Pearcleaner</a></p>
-    <p><a href="https://www.jetbrains.com/fr-fr/phpstorm/">PhpStorm</a></p>
-    <p><a href="https://github.com/DigiDNA/Silicon">Silicon</a></p>
-    <p><a href="https://store.steampowered.com/?l=french">Steam</a></p>
-    <p><a href="https://www.thunderbird.net/fr/">Thunderbird</a></p>
-    <p><a href="https://ntfsformac.tuxera.com/">Tuxera NTFS</a></p>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>body{background-color:#f0f0f0;color:#333;font-size:1rem;margin:0;padding:1rem;font-family:HelveticaNeue,Helvetica,Arial,sans-serif;p{margin:0;padding:0;line-height:1.6rem;a{color:#333;}}}</style><title>Remaining Apps</title></head><body>
+    <p><a href="https://www.cyberghostvpn.com/" target="_blank">CyberGhost VPN</a></p>
+    <p><a href="https://www.devontechnologies.com/apps/freeware" target="_blank">EasyFind</a></p>
+    <p><a href="https://account.microsoft.com/services?lang=fr-FR#main-content-landing-react" target="_blank">Microsoft Office</a></p>
+    <p><a href="https://www.titanium-software.fr/fr/onyx.html" target="_blank">OnyX</a></p>
+    <p><a href="https://itsalin.com/appInfo/?id=pearcleaner" target="_blank">Pearcleaner</a></p>
+    <p><a href="https://www.jetbrains.com/fr-fr/phpstorm/" target="_blank">PhpStorm</a></p>
+    <p><a href="https://github.com/DigiDNA/Silicon" target="_blank">Silicon</a></p>
+    <p><a href="https://store.steampowered.com/?l=french" target="_blank">Steam</a></p>
+    <p><a href="https://www.thunderbird.net/fr/" target="_blank">Thunderbird</a></p>
+    <p><a href="https://ntfsformac.tuxera.com/" target="_blank">Tuxera NTFS</a></p>
+</body>
+</html>
 EOF
 }
 
