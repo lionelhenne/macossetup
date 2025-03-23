@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+caffeinate -dims &
+CAFFEINATE_PID=$!
+
 formulae='1password-cli atuin bat composer eza fd micro fnm php@8.3 postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
 apps='adobe-creative-cloud affinity-designer affinity-photo affinity-publisher appcleaner daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-auto-update microsoft-edge microsoft-excel microsoft-powerpoint microsoft-word openemu postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vivaldi vlc'
@@ -169,3 +172,5 @@ main() {
 }
 
 main && d_success "Installation completed successfully!" || d_error "Installation failed."
+
+kill $CAFFEINATE_PID
