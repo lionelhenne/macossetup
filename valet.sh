@@ -1,44 +1,19 @@
 #!/bin/bash
-
 set -euo pipefail
-
 caffeinate -dims &
 CAFFEINATE_PID=$!
-
+trap 'kill "$CAFFEINATE_PID" &>/dev/null' EXIT
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 blue='\033[0;34m'
 reset='\033[0m'
-
-d_error() {
-    printf "${red}[ERROR] %s${reset}\n" "$1"
-    exit 1
-}
-
-d_header() {
-    printf "\n${green}%s${reset}\n" "$1"
-}
-
-d_success() {
-    printf "${green}[SUCCESS] %s${reset}\n" "$1"
-}
-
-d_warning() {
-    printf "${yellow}[WARNING] %s${reset}\n" "$1"
-}
-
-d_info() {
-    printf "${blue}[INFO] %s${reset}\n" "$1"
-}
-
-if ! sudo -v; then
-    d_error "Cannot acquire sudo privileges. Exiting."
-fi
-
-if ! command -v /opt/homebrew/bin/composer &>/dev/null; then
-    d_error "Composer is required to install Laraval Valet. Exiting."
-fi
+d_error() { printf "${red}[ERROR] %s${reset}\n" "$1" && exit 1 }
+d_header() { printf "\n${green}%s${reset}\n" "$1" }
+d_success() { printf "${green}[SUCCESS] %s${reset}\n" "$1" }
+d_warning() { printf "${yellow}[WARNING] %s${reset}\n" "$1" }
+d_info() { printf "${blue}[INFO] %s${reset}\n" "$1" }
+sudo -v || d_error "Cannot acquire sudo privileges. Exiting."
 
 install_valet() {
     d_header "INSTALLING LARAVEL VALET."
@@ -104,5 +79,3 @@ main() {
 }
 
 main && d_success "Installation completed successfully!" || d_error "Installation failed."
-
-kill $CAFFEINATE_PID

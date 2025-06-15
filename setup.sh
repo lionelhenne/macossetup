@@ -1,9 +1,21 @@
 #!/bin/bash
-
 set -euo pipefail
-
 caffeinate -dims &
 CAFFEINATE_PID=$!
+trap 'kill "$CAFFEINATE_PID" &>/dev/null' EXIT
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+reset='\033[0m'
+d_error() { printf "${red}[ERROR] %s${reset}\n" "$1" && exit 1 }
+d_header() { printf "\n${green}%s${reset}\n" "$1" }
+d_success() { printf "${green}[SUCCESS] %s${reset}\n" "$1" }
+d_warning() { printf "${yellow}[WARNING] %s${reset}\n" "$1" }
+d_info() { printf "${blue}[INFO] %s${reset}\n" "$1" }
+sudo -v || d_error "Cannot acquire sudo privileges. Exiting."
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.config/composer/vendor/bin:$PATH"
 
 formulae='atuin bat composer duf eza fd fnm micro mkcert nss postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
@@ -12,39 +24,6 @@ apps='1password-cli adobe-creative-cloud affinity-designer affinity-photo affini
 fonts='font-alegreya font-alegreya-sans font-alegreya-sans-sc font-alegreya-sc font-alfa-slab-one font-atkinson-hyperlegible-next font-biorhyme font-biorhyme-expanded font-bree-serif font-cascadia-code font-crimson-pro font-crimson-text font-gilbert font-inter font-inter-tight font-jetbrains-mono font-jetbrains-mono-nerd-font font-lato font-libre-baskerville font-libre-bodoni font-libre-caslon-display font-libre-caslon-text font-libre-franklin font-licorice font-lora font-merriweather font-merriweather-sans font-monaspace font-montserrat font-montserrat-alternates font-montserrat-underline font-noto-color-emoji font-noto-emoji font-noto-sans font-noto-sans-display font-noto-sans-jp font-noto-sans-mono font-noto-sans-symbols font-noto-serif font-noto-serif-display font-noto-serif-hentaigana font-noto-serif-jp font-nunito font-nunito-sans font-open-sans font-outfit font-playfair font-playfair-display font-playfair-display-sc font-raleway font-raleway-dots font-redacted-script font-roboto font-roboto-condensed font-roboto-flex font-roboto-mono font-roboto-serif font-roboto-slab font-unica-one font-vollkorn font-vollkorn-sc font-yeseva-one'
 
 casks="${apps} ${fonts}"
-
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-reset='\033[0m'
-
-d_error() {
-    printf "${red}[ERROR] %s${reset}\n" "$1"
-    exit 1
-}
-
-d_header() {
-    printf "\n${green}%s${reset}\n" "$1"
-}
-
-d_success() {
-    printf "${green}[SUCCESS] %s${reset}\n" "$1"
-}
-
-d_warning() {
-    printf "${yellow}[WARNING] %s${reset}\n" "$1"
-}
-
-d_info() {
-    printf "${blue}[INFO] %s${reset}\n" "$1"
-}
-
-if ! sudo -v; then
-    d_error "Cannot acquire sudo privileges. Exiting."
-fi
-
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.config/composer/vendor/bin:$PATH"
 
 install_xcode_command_line_tools() {
     d_header "INSTALLING XCODE COMMAND LINE TOOLS."
@@ -160,5 +139,3 @@ main() {
 }
 
 main && d_success "Installation completed successfully!" || d_error "Installation failed."
-
-kill $CAFFEINATE_PID
