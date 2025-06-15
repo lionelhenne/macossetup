@@ -26,8 +26,8 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - **Terminal-based Text Editor**: [micro](https://micro-editor.github.io/)  
 
 ### `git-user-signingkey.sh` – Git SSH Signing with 1Password  
-✅ Retrieves your SSH public key from 1Password
-✅ Configures git config --global user.signingkey
+✅ Retrieves SSH public key from 1Password. 
+✅ Configures git config --global user.signingkey. 
 
 ### `valet.sh` – Laravel Valet Configuration  
 ✅ Installs and configures [Laravel Valet](https://laravel.com/docs/12.x/valet)  
