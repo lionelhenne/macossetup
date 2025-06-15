@@ -19,9 +19,9 @@ prevent_sleep() {
         caffeinate -dims &
         CAFFEINATE_PID=$!
         trap 'kill "$CAFFEINATE_PID" &>/dev/null 2>&1 || true' EXIT
-        log_info "Prévention de la mise en veille activée"
+        log_info "Sleep prevention activated."
     else
-        log_warning "caffeinate non disponible, la mise en veille n'est pas désactivée"
+        log_warning "caffeinate command not found, sleep prevention disabled."
     fi
 }
 
@@ -125,8 +125,6 @@ create_file_with_remaining_apps() {
     cat <<EOF > remaining_apps.html
 <!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>body{background-color:#f0f0f0;color:#333;font-size:1rem;margin:0;padding:1rem;font-family:HelveticaNeue,Helvetica,Arial,sans-serif;p{margin:0;padding:0;line-height:1.6rem;a{color:#333;}}}</style><title>Remaining Apps</title></head><body>
     <p><a href="https://www.cyberghostvpn.com/" target="_blank">CyberGhost VPN</a></p>
-    <p><a href="https://account.microsoft.com/services?lang=fr-FR#main-content-landing-react" target="_blank">Microsoft Office</a></p>
-    <p><a href="https://itsalin.com/appInfo/?id=pearcleaner" target="_blank">Pearcleaner</a></p>
     <p><a href="https://github.com/DigiDNA/Silicon" target="_blank">Silicon</a></p>
     <p><a href="https://store.steampowered.com/?l=french" target="_blank">Steam</a></p>
     <p><a href="https://ntfsformac.tuxera.com/" target="_blank">Tuxera NTFS</a></p>

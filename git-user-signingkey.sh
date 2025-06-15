@@ -19,9 +19,9 @@ prevent_sleep() {
         caffeinate -dims &
         CAFFEINATE_PID=$!
         trap 'kill "$CAFFEINATE_PID" &>/dev/null 2>&1 || true' EXIT
-        log_info "Prévention de la mise en veille activée"
+        log_info "Sleep prevention activated."
     else
-        log_warning "caffeinate non disponible, la mise en veille n'est pas désactivée"
+        log_warning "caffeinate command not found, sleep prevention disabled."
     fi
 }
 
@@ -57,4 +57,4 @@ main() {
     setup_git
 }
 
-main && log_success "Installation completed successfully!" || log_error "Installation failed."
+main && log_success "Git User Signin Key installation completed successfully!" || log_error "Git User Signin Key  installation failed."
