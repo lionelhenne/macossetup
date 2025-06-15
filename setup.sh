@@ -1,19 +1,29 @@
 #!/bin/bash
 set -euo pipefail
-caffeinate -dims &
-CAFFEINATE_PID=$!
-trap 'kill "$CAFFEINATE_PID" &>/dev/null' EXIT
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-reset='\033[0m'
-d_error() { printf "${red}[ERROR] %s${reset}\n" "$1" && exit 1; }
-d_header() { printf "\n${green}%s${reset}\n" "$1"; }
-d_success() { printf "${green}[SUCCESS] %s${reset}\n" "$1"; }
-d_warning() { printf "${yellow}[WARNING] %s${reset}\n" "$1"; }
-d_info() { printf "${blue}[INFO] %s${reset}\n" "$1"; }
-sudo -v || d_error "Cannot acquire sudo privileges. Exiting."
+
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[0;33m'
+readonly BLUE='\033[0;34m'
+readonly BOLD='\033[1m'
+readonly RESET='\033[0m'
+
+log_error() { printf "${RED}[ERROR] %s${RESET}\n" "$1" >&2; exit 1; }
+log_header() { printf "\n${BOLD}${GREEN}=== %s ===%s\n" "$1" "${RESET}"; }
+log_success() { printf "${GREEN}[SUCCESS] %s${RESET}\n" "$1"; }
+log_warning() { printf "${YELLOW}[WARNING] %s${RESET}\n" "$1"; }
+log_info() { printf "${BLUE}[INFO] %s${RESET}\n" "$1"; }
+
+prevent_sleep() {
+    if command -v caffeinate >/dev/null 2>&1; then
+        caffeinate -dims &
+        CAFFEINATE_PID=$!
+        trap 'kill "$CAFFEINATE_PID" &>/dev/null 2>&1 || true' EXIT
+        log_info "Prévention de la mise en veille activée"
+    else
+        log_warning "caffeinate non disponible, la mise en veille n'est pas désactivée"
+    fi
+}
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.config/composer/vendor/bin:$PATH"
 
@@ -26,86 +36,87 @@ fonts='font-alegreya font-alegreya-sans font-alegreya-sans-sc font-alegreya-sc f
 casks="${apps} ${fonts}"
 
 install_xcode_command_line_tools() {
-    d_header "INSTALLING XCODE COMMAND LINE TOOLS."
+    log_header "INSTALLING XCODE COMMAND LINE TOOLS."
     if ! command -v /usr/bin/xcode-select &>/dev/null; then
-        /usr/bin/xcode-select --install || d_error "Failed to install Xcode Command Line Tools."
+        /usr/bin/xcode-select --install || log_error "Failed to install Xcode Command Line Tools."
     else
-        d_info "Xcode Command Line Tools already installed."
+        log_info "Xcode Command Line Tools already installed."
     fi
 }
 
 install_homebrew() {
-    d_header "INSTALLING HOMEBREW AND FORMULAE."
+    log_header "INSTALLING HOMEBREW AND FORMULAE."
     if ! command -v /opt/homebrew/bin/brew &>/dev/null; then
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && /opt/homebrew/bin/brew update || d_error "Failed to install Homebrew."
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && /opt/homebrew/bin/brew update || log_error "Failed to install Homebrew."
     else
-        d_info "Homebrew already installed."
+        log_info "Homebrew already installed."
     fi
-    /opt/homebrew/bin/brew install ${formulae} || d_error "Failed to install Homebrew formulae."
+    /opt/homebrew/bin/brew install ${formulae} || log_error "Failed to install Homebrew formulae."
 }
 
-lauch_brew_services() {
-    d_header "LAUNCHING HOMEBREW SERVICES."
+launch_brew_services() {
+    log_header "LAUNCHING HOMEBREW SERVICES."
     /opt/homebrew/bin/brew services start atuin
     /opt/homebrew/bin/brew services start postgresql
 }
 
 install_node_with_fnm() {
-    d_header "INSTALLING NODE.JS WITH FNM."
+    log_header "INSTALLING NODE.JS WITH FNM."
     /opt/homebrew/bin/fnm install --lts
 }
 
 backup_zprofile() {
-    d_header "BACKING UP .zprofile."
-    cd "$HOME" || d_error "Error changing directory to $HOME."
-    if [ -e $HOME/.zprofile ]; then
-        mv $HOME/.zprofile $HOME/.zprofile.bak || d_error "Error backing up .zprofile."
+    log_header "BACKING UP .zprofile."
+    cd "$HOME" || log_error "Error changing directory to $HOME."
+    if [ -e "$HOME/.zprofile" ]; then
+        mv $HOME/.zprofile $HOME/.zprofile.bak || log_error "Error backing up .zprofile."
     fi
 }
 
 atuin_config() {
-    d_header "ATUIN CONFIGURATION."
+    log_header "ATUIN CONFIGURATION."
     if [ -d "$HOME/.config/atuin" ]; then
         /opt/homebrew/bin/atuin import auto
-        export ATUIN_CONFIG_DIR="$HOME/.dotfiles/.config/atuin" && rm -rf "$HOME/.config/atuin/config.toml"
+        export ATUIN_CONFIG_DIR="$HOME/.dotfiles/.config/atuin"
+        rm -rf "$HOME/.config/atuin/config.toml"
     else
-        d_warning "Atuin configuration directory does not exist. Skipping import."
+        log_warning "Atuin configuration directory does not exist. Skipping import."
     fi
 }
 
 install_dotfiles() {
-    d_header "INSTALLING DOTFILES."
+    log_header "INSTALLING DOTFILES."
     cd "$HOME"
     if [ ! -d ".dotfiles" ]; then
-        /usr/bin/git clone https://github.com/lionelhenne/dotfiles.git .dotfiles || d_error "Failed to clone dotfiles repository."
+        /usr/bin/git clone https://github.com/lionelhenne/dotfiles.git .dotfiles || log_error "Failed to clone dotfiles repository."
         cd $HOME/.dotfiles
-        /opt/homebrew/bin/stow . || d_error "Failed to stow dotfiles."
+        /opt/homebrew/bin/stow . || log_error "Failed to stow dotfiles."
     elif [ -z "$(ls -A .dotfiles)" ]; then
-        /usr/bin/git clone https://github.com/lionelhenne/dotfiles.git .dotfiles || d_error "Failed to clone dotfiles repository."
+        /usr/bin/git clone https://github.com/lionelhenne/dotfiles.git .dotfiles || log_error "Failed to clone dotfiles repository."
         cd $HOME/.dotfiles
-        /opt/homebrew/bin/stow . || d_error "Failed to stow dotfiles."
+        /opt/homebrew/bin/stow . || log_error "Failed to stow dotfiles."
     elif [ -d ".dotfiles/.git" ]; then
-        d_info "Dotfiles repository already exists and is a git repository."
+        log_info "Dotfiles repository already exists and is a git repository."
         cd $HOME/.dotfiles
-        /opt/homebrew/bin/stow . || d_error "Failed to stow dotfiles."
+        /opt/homebrew/bin/stow . || log_error "Failed to stow dotfiles."
     else
-        d_warning ".dotfiles directory exists but is not a git repository. Skipping stow."
+        log_warning ".dotfiles directory exists but is not a git repository. Skipping stow."
     fi
 }
 
 create_sites_and_developer_folders() {
-    d_header "CREATING SITES AND DEVELOPER FOLDERS."
+    log_header "CREATING SITES AND DEVELOPER FOLDERS."
     if [ ! -d "$HOME/Sites" ]; then
-        mkdir -p "$HOME/Sites" || d_error "Failed to create directory $HOME/Sites."
+        mkdir -p "$HOME/Sites" || log_error "Failed to create directory $HOME/Sites."
     fi
     if [ ! -d "$HOME/Developer" ]; then
-        mkdir -p "$HOME/Developer" || d_error "Failed to create directory $HOME/Developer."
+        mkdir -p "$HOME/Developer" || log_error "Failed to create directory $HOME/Developer."
     fi
 }
 
 install_homebrew_casks() {
-    d_header "INSTALLING HOMEBREW CASKS."
-    /opt/homebrew/bin/brew install --cask ${casks} || d_error "Failed to install Homebrew casks."
+    log_header "INSTALLING HOMEBREW CASKS."
+    /opt/homebrew/bin/brew install --cask ${casks} || log_error "Failed to install Homebrew casks."
 }
 
 create_file_with_remaining_apps() {
@@ -126,9 +137,10 @@ EOF
 }
 
 main() {
+    prevent_sleep && \
     install_xcode_command_line_tools && \
     install_homebrew && \
-    lauch_brew_services && \
+    launch_brew_services && \
     install_node_with_fnm && \
     backup_zprofile && \
     atuin_config && \
@@ -138,4 +150,4 @@ main() {
     create_file_with_remaining_apps
 }
 
-main && d_success "Installation completed successfully!" || d_error "Installation failed."
+main && log_success "Installation completed successfully!" || log_error "Installation failed."
