@@ -15,7 +15,7 @@ See my related dotfiles configuration: [macOS Dotfiles](https://github.com/lione
 ✅ Configures Atuin  
 ✅ Creates the `Sites` and `Developer` directories  
 
-### Homebrew Packages Installed  
+#### Homebrew Packages Installed  
 The following packages are installed via [Homebrew](https://brew.sh/):  
 
 - **Development**: [Composer](https://getcomposer.org/), [PHP](https://www.php.net/), [PostgreSQL](https://www.postgresql.org/), [fnm](https://github.com/Schniz/fnm)  
@@ -24,6 +24,10 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - **System Utilities**: [Atuin](https://atuin.sh/), [bat](https://github.com/sharkdp/bat), [eza](https://github.com/eza-community/eza), [fd](https://github.com/sharkdp/fd), [stow](https://www.gnu.org/software/stow/), [tlrc](https://tldr.sh/tlrc/), [tree](https://oldmanprogrammer.net/source.php?dir=projects/tree), [wget](https://www.gnu.org/software/wget/)  
 - **Fonts**: [JetBrains Mono](https://www.jetbrains.com/fr-fr/lp/mono/), [JetBrains Mono Nerd Font](https://www.nerdfonts.com/), [Monaspace](https://monaspace.githubnext.com/)  
 - **Terminal-based Text Editor**: [micro](https://micro-editor.github.io/)  
+
+### `git-user-signingkey.sh` – Git SSH Signing with 1Password  
+✅ Retrieves your SSH public key from 1Password
+✅ Configures git config --global user.signingkey
 
 ### `valet.sh` – Laravel Valet Configuration  
 ✅ Installs and configures [Laravel Valet](https://laravel.com/docs/12.x/valet)  
@@ -37,8 +41,12 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/setup.sh | /bin/bash
 ```
+### Git global user.signingkey script (`git-user-signingkey.sh`)  
+```bash
+curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/git-user-signingkey.sh | /bin/bash
+```
 
-### Install Laravel Valet (`valet.sh`)  
+### Laravel Valet installation script (`valet.sh`)  
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/valet.sh | /bin/bash
 ```
