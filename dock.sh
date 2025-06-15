@@ -125,7 +125,6 @@ configure_dock() {
     add_app_to_dock "/System/Applications/Music.app"
     add_app_to_dock "/Applications/DaftCloud.app"
     add_app_to_dock "/Applications/GarageBand.app"
-    add_app_to_dock "/Applications/Setapp/Meta.app"
     add_app_to_dock "/Applications/djay Pro.app"
     add_app_to_dock "/Applications/Serato DJ Pro.app"
     
