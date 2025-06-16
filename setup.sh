@@ -9,7 +9,7 @@ readonly BOLD='\033[1m'
 readonly RESET='\033[0m'
 
 log_error() { printf "${RED}[ERROR] %s${RESET}\n" "$1" >&2; exit 1; }
-log_header() { printf "\n${BOLD}${GREEN}=== %s ===%s\n" "$1" "${RESET}"; }
+log_header() { printf "\n${BOLD}${GREEN}=== %s ===${RESET}\n" "$1"; }
 log_success() { printf "${GREEN}[SUCCESS] %s${RESET}\n" "$1"; }
 log_warning() { printf "${YELLOW}[WARNING] %s${RESET}\n" "$1"; }
 log_info() { printf "${BLUE}[INFO] %s${RESET}\n" "$1"; }
@@ -25,11 +25,20 @@ prevent_sleep() {
     fi
 }
 
+check_sudo() {
+    if ! sudo -v; then
+        log_error "Administrateur privileges required but not available. Installation aborted."
+    fi
+    while true; do sudo -n true; sleep 60; done 2>/dev/null &
+    SUDO_REFRESH_PID=$!
+    trap 'kill "$SUDO_REFRESH_PID" &>/dev/null 2>&1 || true' EXIT
+}
+
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.config/composer/vendor/bin:$PATH"
 
-formulae='atuin bat composer duf eza fd fnm micro mkcert nss postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
+formulae='1password-cli atuin bat composer duf eza fd fnm micro mkcert nss postgresql starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
-apps='1password-cli adobe-creative-cloud affinity-designer affinity-photo affinity-publisher appcleaner betterdisplay daisydisk discord firefox ghostty google-chrome handbrake iina keka localsend microsoft-auto-update microsoft-edge microsoft-excel microsoft-powerpoint microsoft-word mimestream openemu opera postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vivaldi'
+apps='1password adobe-creative-cloud affinity-designer affinity-photo affinity-publisher appcleaner betterdisplay daisydisk discord firefox ghostty google-chrome handbrake iina keka localsend microsoft-auto-update microsoft-edge microsoft-excel microsoft-powerpoint microsoft-word mimestream openemu opera postman setapp spotify suspicious-package transmission transmit virtualbuddy visual-studio-code vivaldi'
 
 fonts='font-alegreya font-alegreya-sans font-alegreya-sans-sc font-alegreya-sc font-alfa-slab-one font-atkinson-hyperlegible-next font-biorhyme font-biorhyme-expanded font-bree-serif font-cascadia-code font-crimson-pro font-crimson-text font-gilbert font-inter font-inter-tight font-jetbrains-mono font-jetbrains-mono-nerd-font font-lato font-libre-baskerville font-libre-bodoni font-libre-caslon-display font-libre-caslon-text font-libre-franklin font-licorice font-lora font-merriweather font-merriweather-sans font-monaspace font-montserrat font-montserrat-alternates font-montserrat-underline font-noto-color-emoji font-noto-emoji font-noto-sans font-noto-sans-display font-noto-sans-jp font-noto-sans-mono font-noto-sans-symbols font-noto-serif font-noto-serif-display font-noto-serif-hentaigana font-noto-serif-jp font-nunito font-nunito-sans font-open-sans font-outfit font-playfair font-playfair-display font-playfair-display-sc font-raleway font-raleway-dots font-redacted-script font-roboto font-roboto-condensed font-roboto-flex font-roboto-mono font-roboto-serif font-roboto-slab font-unica-one font-vollkorn font-vollkorn-sc font-yeseva-one'
 
@@ -136,6 +145,7 @@ EOF
 
 main() {
     prevent_sleep && \
+    check_sudo && \
     install_xcode_command_line_tools && \
     install_homebrew && \
     launch_brew_services && \
