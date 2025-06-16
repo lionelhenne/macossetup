@@ -53,7 +53,7 @@ setup_git() {
 }
 
 main() {
-    prevent_sleep && \
+    prevent_sleep
     setup_git
 }
 

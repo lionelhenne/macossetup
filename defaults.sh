@@ -152,7 +152,7 @@ configure_system_defaults() {
 }
 
 main() {
-    prevent_sleep && \
+    prevent_sleep
     configure_system_defaults
 }
 

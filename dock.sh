@@ -141,7 +141,7 @@ configure_dock() {
 }
 
 main() {
-    prevent_sleep && \
+    prevent_sleep
     configure_dock
 }
 

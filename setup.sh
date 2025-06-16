@@ -63,6 +63,31 @@ install_homebrew() {
     /opt/homebrew/bin/brew install ${formulae} || log_error "Failed to install Homebrew formulae."
 }
 
+setup_ssh_config() {
+    log_header "CONFIGURING SSH FOR 1PASSWORD AND GITHUB"
+    local ssh_dir="$HOME/.ssh"
+    local ssh_config_file="$ssh_dir/config"
+
+    mkdir -p "$ssh_dir"
+    chmod 700 "$ssh_dir"
+
+    if [ ! -f "$ssh_config_file" ]; then
+        log_info "Creating SSH config file for 1Password Agent..."
+        cat <<EOF > "$ssh_config_file"
+Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host github.com
+    HostName github.com
+    User git
+EOF
+        chmod 600 "$ssh_config_file"
+        log_success "SSH config created successfully."
+    else
+        log_info "SSH config file already exists. Skipping creation."
+    fi
+}
+
 launch_brew_services() {
     log_header "LAUNCHING HOMEBREW SERVICES."
     /opt/homebrew/bin/brew services start atuin
@@ -144,17 +169,18 @@ EOF
 }
 
 main() {
-    prevent_sleep && \
-    check_sudo && \
-    install_xcode_command_line_tools && \
-    install_homebrew && \
-    launch_brew_services && \
-    install_node_with_fnm && \
-    backup_zprofile && \
-    atuin_config && \
-    install_dotfiles && \
-    create_sites_and_developer_folders && \
-    install_homebrew_casks && \
+    prevent_sleep
+    check_sudo
+    install_xcode_command_line_tools
+    install_homebrew
+    setup_ssh_config
+    launch_brew_services
+    install_node_with_fnm
+    backup_zprofile
+    atuin_config
+    install_dotfiles
+    create_sites_and_developer_folders
+    install_homebrew_casks
     create_file_with_remaining_apps
 }
 
