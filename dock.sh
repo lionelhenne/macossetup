@@ -93,50 +93,51 @@ add_small_spacer() {
 configure_dock() {
     log_header "SETTING UP DOCK."
 
-    defaults delete com.apple.dock persistent-apps
-    defaults delete com.apple.dock persistent-others
+    defaults delete com.apple.dock persistent-apps && \
+    defaults delete com.apple.dock persistent-others && \
     
-    add_app_to_dock "/Applications/Ghostty.app"
+    add_app_to_dock "/Applications/Ghostty.app" && \
 
-    add_small_spacer
+    add_small_spacer && \
 
-    add_app_to_dock "/Applications/Google Chrome.app"
-    add_app_to_dock "/Applications/Firefox.app"
-    add_app_to_dock "/Applications/Mimestream.app"
-    add_app_to_dock "/Applications/Discord.app"
+    add_app_to_dock "/Applications/Google Chrome.app" && \
+    add_app_to_dock "/Applications/Firefox.app" && \
+    add_app_to_dock "/Applications/Mimestream.app" && \
+    add_app_to_dock "/Applications/Discord.app" && \
 
-    add_small_spacer
+    add_small_spacer && \
 
-    add_app_to_dock "/System/Applications/TextEdit.app"
-    add_app_to_dock "/Applications/Visual Studio Code.app"
-    add_app_to_dock "/Applications/Xcode.app/Contents/Applications/FileMerge.app"
-    add_app_to_dock "/Applications/Postman.app"
-    add_app_to_dock "/Applications/Setapp/TablePlus.app"
-	add_app_to_dock "/Applications/Transmit.app"
+    add_app_to_dock "/System/Applications/TextEdit.app" && \
+    add_app_to_dock "/Applications/Visual Studio Code.app" && \
+    add_app_to_dock "/Applications/Xcode.app/Contents/Applications/FileMerge.app" && \
+    add_app_to_dock "/Applications/Postman.app" && \
+    add_app_to_dock "/Applications/Setapp/TablePlus.app" && \
+	add_app_to_dock "/Applications/Transmit.app" && \
     if photoshop_path=$(find_app_by_bundle_id "com.adobe.Photoshop"); then
-        add_app_to_dock "$photoshop_path"
+        add_app_to_dock "$photoshop_path" && \
     else
-        log_warning "Adobe Photoshop not found"
+        log_warning "Adobe Photoshop not found" && \
     fi
 
-    add_small_spacer
+    add_small_spacer && \
 
-    add_app_to_dock "/Applications/Spotify.app"
-    add_app_to_dock "/System/Applications/Music.app"
-    add_app_to_dock "/Applications/DaftCloud.app"
-    add_app_to_dock "/Applications/GarageBand.app"
-    add_app_to_dock "/Applications/djay Pro.app"
-    add_app_to_dock "/Applications/Serato DJ Pro.app"
+    add_app_to_dock "/Applications/Spotify.app" && \
+    add_app_to_dock "/System/Applications/Music.app" && \
+    add_app_to_dock "/Applications/DaftCloud.app" && \
+    add_app_to_dock "/Applications/GarageBand.app" && \
+    add_app_to_dock "/Applications/djay Pro.app" && \
+    add_app_to_dock "/Applications/Serato DJ Pro.app" && \
     
-    add_folder_to_dock "/Applications"
-    add_folder_to_dock "/Applications/Setapp"
-    add_folder_to_dock "$HOME/Pictures"
-    add_folder_to_dock "$HOME/Music"
-    add_folder_to_dock "$HOME/Developer"
-    add_folder_to_dock "$HOME/Sites"
-    add_folder_to_dock "$HOME/Downloads"
+    add_folder_to_dock "/Applications" && \
+    add_folder_to_dock "/Applications/Setapp" && \
+    add_folder_to_dock "$HOME/Pictures" && \
+    add_folder_to_dock "$HOME/Music" && \
+    add_folder_to_dock "$HOME/Developer" && \
+    add_folder_to_dock "$HOME/Sites" && \
+    add_folder_to_dock "$HOME/Downloads" && \
     
     log_info "Restarting Dock to apply changes."
+
     killall Dock
 }
 
