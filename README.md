@@ -24,6 +24,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 **Development Tools**  
 - [Composer](https://getcomposer.org/) – PHP dependency manager  
 - [fnm](https://github.com/Schniz/fnm) – Fast Node.js version manager  
+- [MySQL](https://www.mysql.com/) – Open source relational database  
 - [PostgreSQL](https://www.postgresql.org/) – Advanced open source database  
 
 **Shell & Terminal**  
@@ -40,6 +41,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - [GNU Tar](https://www.gnu.org/software/tar/) – Archiving utility  
 - [mkcert](https://github.com/FiloSottile/mkcert) – A simple tool for making locally-trusted development certificates  
 - [nss](https://firefox-source-docs.mozilla.org/security/nss/index.html) – Network Security Services  
+- [ripgrep](https://github.com/BurntSushi/ripgrep) – Line-oriented search tool that recursively searches directories  
 - [rsync](https://rsync.samba.org/) – File synchronization tool  
 - [stow](https://www.gnu.org/software/stow/) – Symlink farm manager  
 - [tlrc](https://tldr.sh/tlrc/) – Official tldr client written in Rust  
@@ -103,25 +105,30 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 #### Typography Collection  
 Over 50 professional fonts including:  
 - **Monospace**: Cascadia Code, JetBrains Mono, JetBrains Mono Nerd Font, Monaspace, Roboto Mono  
-- **Sans Serif**: Inter, Inter Tight, Lato, Montserrat, Nunito, Open Sans, Roboto  
-- **Serif**: Crimson Pro, Libre Baskerville, Lora, Merriweather, Playfair Display  
-- **Display**: Alfa Slab One, Outfit, Unica One  
-- **Emoji & Symbols**: Noto Color Emoji, Noto Emoji, Noto Sans Symbols  
+- **Sans Serif**: Alegreya Sans, Atkinson Hyperlegible Next, Inter, Inter Tight, Lato, Libre Franklin, Montserrat, Nunito, Nunito Sans, Open Sans, Outfit, Raleway, Roboto, Roboto Condensed, Roboto Flex, Roboto Slab  
+- **Serif**: Alegreya, Alegreya Sans SC, Alegreya SC, Biorhyme, Biorhyme Expanded, Bree Serif, Crimson Pro, Crimson Text, Libre Baskerville, Libre Bodoni, Libre Caslon Display, Libre Caslon Text, Lora, Merriweather, Merriweather Sans, Playfair, Playfair Display, Playfair Display SC, Vollkorn, Vollkorn SC  
+- **Display**: Alfa Slab One, Gilbert, Licorice, Redacted Script, Unica One, Yeseva One  
+- **Emoji & Symbols**: Noto Color Emoji, Noto Emoji, Noto Sans, Noto Sans Display, Noto Sans JP, Noto Sans Mono, Noto Sans Symbols, Noto Serif, Noto Serif Display, Noto Serif Hentaigana, Noto Serif JP  
 
 ### `defaults.sh` – System Preferences Configuration  
 ✅ Configures macOS system defaults and preferences  
-✅ Sets up Finder preferences (view styles, search scope, path display)  
-✅ Configures Dock settings (auto-hide, icon size, recent apps)  
+✅ Sets up general system settings (file extensions, scrolling, keyboard access)  
+✅ Configures Finder preferences (icon view, path bar, search scope, desktop items)  
+✅ Sets up Dock settings (auto-hide, icon size, minimize behavior, recent apps)  
 ✅ Enables trackpad tap-to-click and drag lock  
-✅ Sets up window management preferences  
-✅ Configures accessibility features (zoom with scroll wheel)  
+✅ Configures window management preferences (Stage Manager, tiled windows)  
+✅ Sets up accessibility features (zoom with scroll wheel + Control key)  
 ✅ Customizes Safari and TextEdit default behaviors  
+✅ Configures function key behavior  
 ✅ Applies changes by restarting affected system services  
 
 ### `dock.sh` – Dock Configuration  
 ✅ Completely customizes the macOS Dock layout  
 ✅ Removes all existing Dock items  
 ✅ Adds applications in organized groups with spacers  
+✅ Adds development tools (Ghostty, Visual Studio Code, FileMerge, Postman, TablePlus, Transmit, Adobe Photoshop)  
+✅ Adds communication apps (Google Chrome, Firefox, Mimestream, Discord)  
+✅ Adds media applications (Spotify, Music, DaftCloud, GarageBand, djay Pro, Serato DJ Pro)  
 ✅ Adds useful folders (Applications, Setapp, Pictures, Music, Developer, Sites, Downloads)  
 ✅ Configures Dock size and auto-hide behavior  
 
@@ -134,6 +141,7 @@ Over 50 professional fonts including:
 ✅ Sets up Valet in the `~/Sites` directory  
 ✅ Installs [PHP Monitor](https://phpmon.app/) for managing PHP versions  
 ✅ Creates a `phpinfo` directory with SSL certificate  
+✅ Links and secures phpinfo.test domain  
 ✅ Opens PHP Monitor and phpinfo.test in browser  
 
 ## Installation  
