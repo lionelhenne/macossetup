@@ -9,8 +9,9 @@ See my related dotfiles configuration: [macOS Dotfiles](https://github.com/lione
 ### `setup.sh` – Base Configuration  
 ✅ Installs Xcode Command Line Tools  
 ✅ Sets up Homebrew and installs a selection of packages  
-✅ Configures SSH for 1Password and GitHub  
-✅ Starts Atuin and PostgreSQL services  
+✅ Configures SSH for 1Password, GitHub, and Hostinger  
+✅ Starts Atuin, MySQL, and PostgreSQL services  
+✅ Secures MySQL installation automatically  
 ✅ Installs Node.js (LTS) via fnm  
 ✅ Clones and applies [my dotfiles](https://github.com/lionelhenne/dotfiles) using GNU Stow  
 ✅ Configures Atuin  
@@ -59,8 +60,6 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 **Productivity & Communication**  
 - [Discord](https://discord.com/)  
 - [LocalSend](https://localsend.org/)  
-- [Mimestream](https://mimestream.com/)  
-- [Todoist App](https://todoist.com/)  
 
 **Browsers**  
 - [Google Chrome](https://www.google.com/chrome/)  
@@ -68,16 +67,10 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - [Microsoft Edge](https://www.microsoft.com/edge)  
 - [Vivaldi](https://vivaldi.com/)  
 
-**Adobe Creative Cloud**  
-- [Adobe Creative Cloud](https://creativecloud.adobe.com/)  
-
 **Affinity**  
 - [Affinity Designer](https://affinity.serif.com/designer/)  
 - [Affinity Photo](https://affinity.serif.com/photo/)  
 - [Affinity Publisher](https://affinity.serif.com/publisher/)  
-
-**Microsoft Office Suite**  
-- [Microsoft Auto Update, Excel, PowerPoint, Word](https://m365.cloud.microsoft/apps/?auth=1)  
 
 **Development Tools**  
 - [Ghostty](https://ghostty.org/)  
@@ -97,10 +90,12 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - [HandBrake](https://handbrake.fr/)  
 - [IINA](https://iina.io/)  
 - [Spotify](https://www.spotify.com/)  
-- [Transmission](https://transmissionbt.com/)  
 
 **Entertainment**  
 - [OpenEmu](https://openemu.org/)  
+
+**Utilities**  
+- [Transmission](https://transmissionbt.com/)  
 
 #### Typography Collection  
 Over 50 professional fonts including:  
