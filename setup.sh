@@ -80,6 +80,11 @@ Host *
 Host github.com
     HostName github.com
     User git
+
+Host hostinger
+    HostName 147.93.92.46
+    User u520650353
+    Port 65002
 EOF
         chmod 600 "$ssh_config_file"
         log_success "SSH config created successfully."
@@ -91,7 +96,23 @@ EOF
 launch_brew_services() {
     log_header "LAUNCHING HOMEBREW SERVICES."
     /opt/homebrew/bin/brew services start atuin
+    /opt/homebrew/bin/brew services start mysql
     /opt/homebrew/bin/brew services start postgresql
+}
+
+secure_mysql() {
+    log_header "SECURING MYSQL INSTALLATION"
+    sleep 5
+    log_info "Setting up MySQL root password and security..."
+    /opt/homebrew/bin/mysql -u root -e "
+        ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+        DELETE FROM mysql.user WHERE User='';
+        DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+        DROP DATABASE IF EXISTS test;
+        DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+        FLUSH PRIVILEGES;
+    " || log_warning "MySQL security setup failed. You may need to run mysql_secure_installation manually."
+    log_success "MySQL secured successfully."
 }
 
 install_node_with_fnm() {
@@ -175,6 +196,7 @@ main() {
     install_homebrew
     setup_ssh_config
     launch_brew_services
+    secure_mysql
     install_node_with_fnm
     backup_zprofile
     atuin_config
