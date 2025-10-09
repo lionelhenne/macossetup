@@ -189,6 +189,18 @@ brew install --cask tuxera-ntfs
 EOF
 }
 
+install_mbu() {
+    log_header "INSTALLING MBU SCRIPT."
+    local bin_dir="$HOME/.local/bin"
+    
+    mkdir -p "$bin_dir"
+    
+    curl -fsSL https://raw.githubusercontent.com/lionelhenne/mbu/refs/heads/main/mbu -o "$bin_dir/mbu" || log_error "Failed to download mbu."
+    chmod +x "$bin_dir/mbu"
+    
+    log_success "mbu installed in $bin_dir"
+}
+
 main() {
     prevent_sleep
     check_sudo
@@ -201,6 +213,7 @@ main() {
     backup_zprofile
     atuin_config
     install_dotfiles
+    install_mbu
     create_sites_and_developer_folders
     install_homebrew_casks
     create_file_with_remaining_apps
