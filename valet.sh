@@ -27,6 +27,12 @@ prevent_sleep() {
     fi
 }
 
+add_php_taps() {
+    log_header "ADDING PHP HOMEBREW TAPS."
+    /opt/homebrew/bin/brew tap shivammathur/php
+    /opt/homebrew/bin/brew tap shivammathur/extensions
+}
+
 install_valet() {
     log_header "INSTALLING LARAVEL VALET."
     if ! command -v "$COMPOSER_BIN_DIR/valet" &>/dev/null; then
@@ -83,6 +89,7 @@ create_phpinfo_folder() {
 
 main() {
     prevent_sleep && \
+    add_php_taps && \
     install_valet && \
     # update_php_fpm_for_php83 && \
     install_phpmon && \
