@@ -41,15 +41,15 @@ configure_system_defaults() {
     defaults write NSGlobalDomain "AppleKeyboardUIMode" -int "2"
 
     # Default size for window sidebars (Normal)
-    defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int "2"
+    # defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int "2"
 
     # Expand save panel by default
     defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+    # defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
     # Expand print panel by default
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+    # defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
     # Commented line: Force window closure when quitting an app, instead of restoring them
     # defaults write NSGlobalDomain "NSQuitAlwaysKeepsWindow" -bool "false"
@@ -88,13 +88,13 @@ configure_system_defaults() {
     defaults write com.apple.dock "expose-group-apps" -bool "true"
 
     # Disable "pinch with thumb and three fingers" gesture for Launchpad
-    defaults write com.apple.dock "showLaunchpadGestureEnabled" -bool "false"
+    # defaults write com.apple.dock "showLaunchpadGestureEnabled" -bool "false"
 
     # --------------------------------------------------
     # --- FINDER
     # --------------------------------------------------
     # Default to icon view (icnv: Icon, Nlsv: List, clmv: Column, Flwv: Cover Flow)
-    defaults write com.apple.finder "FXPreferredViewStyle" -string "icnv"
+    # defaults write com.apple.finder "FXPreferredViewStyle" -string "icnv"
 
     # Show path bar at the bottom of windows
     defaults write com.apple.finder "ShowPathbar" -bool "true"
@@ -103,21 +103,21 @@ configure_system_defaults() {
     defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
 
     # Show warning when changing a file extension
-    defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "true"
+    # defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "true"
 
     # Don't show recent tags in sidebar
     defaults write com.apple.finder "ShowRecentTags" -bool "false"
 
     # Open new folders in new window rather than tab
-    defaults write com.apple.finder "FinderSpawnTab" -bool "false"
+    # defaults write com.apple.finder "FinderSpawnTab" -bool "false"
 
     # Hide preview pane by default
-    defaults write com.apple.finder "ShowPreviewPane" -bool "false"
+    # defaults write com.apple.finder "ShowPreviewPane" -bool "false"
 
     # Hide hard drives, external drives, and servers on desktop for cleaner look
     defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool "false"
     defaults write com.apple.finder "ShowHardDrivesOnDesktop" -bool "false"
-    defaults write com.apple.finder "ShowMountedServersOnDesktop" -bool "false"
+    # defaults write com.apple.finder "ShowMountedServersOnDesktop" -bool "false"
     defaults write com.apple.finder "ShowRemovableMediaOnDesktop" -bool "false"
 
     # --------------------------------------------------
@@ -136,7 +136,7 @@ configure_system_defaults() {
     defaults write com.apple.universalaccess "closeViewScrollWheelToggle" -bool "true"
 
     # 262144 corresponds to Control key (^)
-    defaults write com.apple.universalaccess "closeViewScrollWheelModifiersInt" -int "262144"
+    # defaults write com.apple.universalaccess "closeViewScrollWheelModifiersInt" -int "262144"
 
     # --------------------------------------------------
     # --- SPECIFIC APPLICATIONS
@@ -154,7 +154,7 @@ configure_system_defaults() {
     defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false 
 
     # Commented line: Would force F1, F2, etc. keys to function as standard function keys
-    defaults write com.apple.HIToolbox "AppleFnUsageType" -int "2"
+    # defaults write com.apple.HIToolbox "AppleFnUsageType" -int "2"
 
     log_info "Applying changes (rebooting services)…"
 
