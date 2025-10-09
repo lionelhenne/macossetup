@@ -17,7 +17,7 @@ See my related dotfiles configuration: [macOS Dotfiles](https://github.com/lione
 ✅ Configures Atuin  
 ✅ Creates the `Sites` and `Developer` directories  
 ✅ Installs Homebrew casks (applications and fonts)  
-✅ Creates a file with remaining apps to install manually  
+✅ Creates a file with remaining apps to install manually 
 
 #### Homebrew Packages Installed  
 The following packages are installed via [Homebrew](https://brew.sh/):  
@@ -107,29 +107,14 @@ Over 50 professional fonts including:
 
 ### `defaults.sh` – System Preferences Configuration  
 ✅ Configures macOS system defaults and preferences  
-✅ Sets up general system settings (file extensions, scrolling, keyboard access)  
-✅ Configures Finder preferences (icon view, path bar, search scope, desktop items)  
-✅ Sets up Dock settings (auto-hide, icon size, minimize behavior, recent apps)  
+✅ Sets up general system settings (file extensions, natural scrolling, keyboard access, save/print panels)  
+✅ Configures Finder preferences (path bar, search scope, desktop items visibility)  
+✅ Sets up Dock settings (auto-hide, icon size, minimize behavior, recent apps, Spaces arrangement)  
 ✅ Enables trackpad tap-to-click and drag lock  
-✅ Configures window management preferences (Stage Manager, tiled windows)  
+✅ Configures window management preferences (Stage Manager, tiled windows margins)  
 ✅ Sets up accessibility features (zoom with scroll wheel + Control key)  
-✅ Customizes Safari and TextEdit default behaviors  
-✅ Configures function key behavior  
+✅ Customizes Safari (full URL display) and TextEdit (plain text mode, smart quotes)  
 ✅ Applies changes by restarting affected system services  
-
-### `dock.sh` – Dock Configuration  
-✅ Completely customizes the macOS Dock layout  
-✅ Removes all existing Dock items  
-✅ Adds applications in organized groups with spacers  
-✅ Adds development tools (Ghostty, Visual Studio Code, FileMerge, Postman, TablePlus, Transmit, Adobe Photoshop)  
-✅ Adds communication apps (Google Chrome, Firefox, Mimestream, Discord)  
-✅ Adds media applications (Spotify, Music, DaftCloud, GarageBand, djay Pro, Serato DJ Pro)  
-✅ Adds useful folders (Applications, Setapp, Pictures, Music, Developer, Sites, Downloads)  
-✅ Configures Dock size and auto-hide behavior  
-
-### `git-user-signingkey.sh` – Git SSH Signing with 1Password  
-✅ Retrieves SSH public key from 1Password  
-✅ Configures `git config --global user.signingkey`  
 
 ### `valet.sh` – Laravel Valet Configuration  
 ✅ Installs and configures [Laravel Valet](https://laravel.com/docs/12.x/valet)  
@@ -151,16 +136,6 @@ curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/m
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/defaults.sh | /bin/bash
 ```
 
-### Dock configuration (`dock.sh`)  
-```bash
-curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/dock.sh | /bin/bash
-```
-
-### Git global user.signingkey script (`git-user-signingkey.sh`)  
-```bash
-curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/git-user-signingkey.sh | /bin/bash
-```
-
 ### Laravel Valet installation script (`valet.sh`)  
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/valet.sh | /bin/bash
@@ -170,6 +145,5 @@ curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/m
 
 After running the main setup script, a file `remaining_apps.html` will be created on your Desktop with links to applications that need to be installed manually:  
 - [CyberGhost VPN](https://www.cyberghostvpn.com/)  
-- [Silicon](https://github.com/DigiDNA/Silicon)  
 - [Steam](https://store.steampowered.com/)  
 - [Tuxera NTFS](https://ntfsformac.tuxera.com/)
