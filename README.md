@@ -143,7 +143,4 @@ curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/m
 
 ## Manual Installation Required  
 
-After running the main setup script, a file `remaining_apps.html` will be created on your Desktop with links to applications that need to be installed manually:  
-- [CyberGhost VPN](https://www.cyberghostvpn.com/)  
-- [Steam](https://store.steampowered.com/)  
-- [Tuxera NTFS](https://ntfsformac.tuxera.com/)
+After running the main setup script, a file `remaining_apps.txt` will be created on the Desktop with links to applications that need to be installed manually.  
