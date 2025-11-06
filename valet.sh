@@ -49,16 +49,6 @@ install_valet() {
     fi
 }
 
-# update_php_fpm_for_php83() {
-#     log_header "UPDATING PHP FPM FOR PHP@8.3."
-#     if /opt/homebrew/bin/brew list --versions php@8.3 > /dev/null 2>&1; then
-#         "$COMPOSER_BIN_DIR/valet" use php@8.3 || log_error "Error running valet use php@8.3." && \
-#         "$COMPOSER_BIN_DIR/valet" install || log_error "Error running valet install."
-#     fi
-#     log_success "Valet updated for php@8.3. Switching back to latest php version."
-#     "$COMPOSER_BIN_DIR/valet" use php || log_error "Error running valet use php"
-# }
-
 install_phpmon() {
     log_header "INSTALLING PHP MONITOR."
     if [ -d "/Applications/PHP Monitor.app" ]; then
@@ -91,7 +81,6 @@ main() {
     prevent_sleep
     add_php_taps
     install_valet
-    # update_php_fpm_for_php83
     install_phpmon
     create_phpinfo_folder
     open -a "PHP Monitor"

@@ -13,11 +13,12 @@ See my related dotfiles configuration: [macOS Dotfiles](https://github.com/lione
 ✅ Starts Atuin, MySQL, and PostgreSQL services  
 ✅ Secures MySQL installation automatically  
 ✅ Installs Node.js (LTS) via fnm  
+✅ Backs up existing `.zprofile`  
 ✅ Clones and applies [my dotfiles](https://github.com/lionelhenne/dotfiles) using GNU Stow  
 ✅ Configures Atuin  
+✅ Installs the `mbu` script  
 ✅ Creates the `Sites` and `Developer` directories  
-✅ Installs Homebrew casks (applications and fonts)  
-✅ Creates a file with remaining apps to install manually 
+✅ Installs Homebrew casks (applications and fonts)
 
 #### Homebrew Packages Installed  
 The following packages are installed via [Homebrew](https://brew.sh/):  
@@ -55,7 +56,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 #### Applications Installed via Homebrew Casks  
 
 **1Password**  
-- [1Password](https://1password.com/) & [1Password CLI](https://1password.com/downloads/command-line/).   
+- [1Password](https://1password.com/) & [1Password CLI](https://1password.com/downloads/command-line/)  
 
 **Productivity & Communication**  
 - [Discord](https://discord.com/)  
@@ -67,10 +68,9 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - [Microsoft Edge](https://www.microsoft.com/edge)  
 - [Vivaldi](https://vivaldi.com/)  
 
-**Affinity**  
-- [Affinity Designer](https://affinity.serif.com/designer/)  
-- [Affinity Photo](https://affinity.serif.com/photo/)  
-- [Affinity Publisher](https://affinity.serif.com/publisher/)  
+**Creative**
+- [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html)  
+- [Affinity](https://affinity.serif.com/)  
 
 **Development Tools**  
 - [Ghostty](https://ghostty.org/)  
@@ -81,10 +81,12 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 **System Utilities**  
 - [AppCleaner](https://freemacsoft.net/appcleaner/)  
 - [BetterDisplay](https://github.com/waydabber/BetterDisplay)  
+- [CyberGhost VPN](https://www.cyberghostvpn.com/)
 - [DaisyDisk](https://daisydiskapp.com/)  
 - [Setapp](https://setapp.com/)  
 - [Suspicious Package](https://www.mothersruin.com/software/SuspiciousPackage/)  
-- [VirtualBuddy](https://virtualbuddy.app/)  
+- [Tuxera NTFS](https://www.tuxera.com/products/tuxera-ntfs-for-mac/)
+- [VirtualBuddy](https://virtualbuddy.app/)
 
 **Media**  
 - [HandBrake](https://handbrake.fr/)  
@@ -93,6 +95,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 
 **Entertainment**  
 - [OpenEmu](https://openemu.org/)  
+- [Steam](https://store.steampowered.com/)
 
 **Utilities**  
 - [Transmission](https://transmissionbt.com/)  
@@ -100,7 +103,7 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 #### Typography Collection  
 Over 50 professional fonts including:  
 - **Monospace**: Cascadia Code, JetBrains Mono, JetBrains Mono Nerd Font, Monaspace, Roboto Mono  
-- **Sans Serif**: Alegreya Sans, Atkinson Hyperlegible Next, Inter, Inter Tight, Lato, Libre Franklin, Montserrat, Nunito, Nunito Sans, Open Sans, Outfit, Raleway, Roboto, Roboto Condensed, Roboto Flex, Roboto Slab  
+- **Sans Serif**: Alegreya Sans, Atkinson Hyperlegible Next, Inter, Inter Tight, Lato, Libre Franklin, Montserrat, Montserrat Alternates, Montserrat Underline, Nunito, Nunito Sans, Open Sans, Outfit, Raleway, Raleway Dots, Roboto, Roboto Condensed, Roboto Flex, Roboto Slab  
 - **Serif**: Alegreya, Alegreya Sans SC, Alegreya SC, Biorhyme, Biorhyme Expanded, Bree Serif, Crimson Pro, Crimson Text, Libre Baskerville, Libre Bodoni, Libre Caslon Display, Libre Caslon Text, Lora, Merriweather, Merriweather Sans, Playfair, Playfair Display, Playfair Display SC, Vollkorn, Vollkorn SC  
 - **Display**: Alfa Slab One, Gilbert, Licorice, Redacted Script, Unica One, Yeseva One  
 - **Emoji & Symbols**: Noto Color Emoji, Noto Emoji, Noto Sans, Noto Sans Display, Noto Sans JP, Noto Sans Mono, Noto Sans Symbols, Noto Serif, Noto Serif Display, Noto Serif Hentaigana, Noto Serif JP  
@@ -113,16 +116,17 @@ Over 50 professional fonts including:
 ✅ Enables trackpad tap-to-click and drag lock  
 ✅ Configures window management preferences (Stage Manager, tiled windows margins)  
 ✅ Sets up accessibility features (zoom with scroll wheel + Control key)  
-✅ Customizes Safari (full URL display) and TextEdit (plain text mode, smart quotes)  
-✅ Applies changes by restarting affected system services  
+✅ Customizes Safari (full URL display) and TextEdit (plain text mode, disable smart quotes, new document on launch)  
+✅ Applies changes by restarting affected system services
 
 ### `valet.sh` – Laravel Valet Configuration  
+✅ Adds Homebrew taps for PHP (shivammathur)
 ✅ Installs and configures [Laravel Valet](https://laravel.com/docs/12.x/valet)  
 ✅ Sets up Valet in the `~/Sites` directory  
 ✅ Installs [PHP Monitor](https://phpmon.app/) for managing PHP versions  
 ✅ Creates a `phpinfo` directory with SSL certificate  
 ✅ Links and secures phpinfo.test domain  
-✅ Opens PHP Monitor and phpinfo.test in browser  
+✅ Opens PHP Monitor and phpinfo.test in browser
 
 ## Installation  
 
@@ -140,7 +144,3 @@ curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/m
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/valet.sh | /bin/bash
 ```
-
-## Manual Installation Required  
-
-After running the main setup script, a file `remaining_apps.txt` will be created on the Desktop with links to applications that need to be installed manually.  
