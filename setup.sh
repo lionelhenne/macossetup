@@ -36,7 +36,7 @@ check_sudo() {
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.config/composer/vendor/bin:$PATH"
 
-formulae='atuin bat composer duf eza fd fnm gnu-tar micro mkcert mysql nss postgresql ripgrep rsync starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
+formulae='atuin bat composer duf eza fd fnm gnu-tar micro mkcert mysql nss postgresql@18 ripgrep rsync starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
 apps='1password 1password-cli adobe-creative-cloud affinity appcleaner betterdisplay cyberghost-vpn daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-edge openemu postman setapp spotify steam suspicious-package transmission transmit tuxera-ntfs virtualbuddy visual-studio-code vivaldi'
 
