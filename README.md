@@ -142,7 +142,7 @@ Clone and run the interactive installer:
 
 ```bash
 git clone https://github.com/lionelhenne/macossetup.git
-cd macos-setup
+cd macossetup
 chmod +x setup.sh
 ./setup.sh
 ```

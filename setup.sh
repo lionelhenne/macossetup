@@ -33,7 +33,7 @@ VISUAL_HISTORY=""
 # Core formulae (Excluding databases and php which have their own steps)
 readonly CORE_FORMULAE='atuin bat composer duf eza fd fnm gnu-tar micro mkcert nss ripgrep rsync starship stow tlrc tree wget zsh-autosuggestions zsh-syntax-highlighting'
 
-readonly CASKS_APPS='1password 1password-cli adobe-creative-cloud affinity appcleaner betterdisplay cyberghost-vpn daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-edge openemu postman setapp spotify steam suspicious-package transmission transmit tuxera-ntfs virtualbuddy visual-studio-code vivaldi'
+readonly CASKS_APPS='1password 1password-cli adobe-creative-cloud affinity appcleaner betterdisplay cyberghost-vpn daisydisk discord firefox ghostty google-chrome handbrake iina localsend microsoft-edge openemu postman setapp spotify steam suspicious-package transmission transmit virtualbuddy visual-studio-code vivaldi'
 
 readonly CASKS_FONTS='font-alegreya font-alegreya-sans font-alegreya-sans-sc font-alegreya-sc font-alfa-slab-one font-atkinson-hyperlegible-next font-biorhyme font-biorhyme-expanded font-bree-serif font-cascadia-code font-crimson-pro font-crimson-text font-gilbert font-inter font-inter-tight font-jetbrains-mono font-jetbrains-mono-nerd-font font-lato font-libre-baskerville font-libre-bodoni font-libre-caslon-display font-libre-caslon-text font-libre-franklin font-licorice font-lora font-merriweather font-merriweather-sans font-monaspace font-montserrat font-montserrat-alternates font-montserrat-underline font-noto-color-emoji font-noto-emoji font-noto-sans font-noto-sans-display font-noto-sans-jp font-noto-sans-mono font-noto-sans-symbols font-noto-serif font-noto-serif-display font-noto-serif-hentaigana font-noto-serif-jp font-nunito font-nunito-sans font-open-sans font-outfit font-playfair font-playfair-display font-playfair-display-sc font-raleway font-raleway-dots font-redacted-script font-roboto font-roboto-condensed font-roboto-flex font-roboto-mono font-roboto-serif font-roboto-slab font-unica-one font-vollkorn font-vollkorn-sc font-yeseva-one'
 
@@ -315,6 +315,14 @@ module_web() {
         fi
     else
         log_error "Valet binary not found at $VALET_BIN after installation."
+    fi
+
+    # Laravel Installer
+    if ! composer global show laravel/installer &>/dev/null; then
+        log_info "Installing Laravel Installer..."
+        composer global require laravel/installer
+    else
+        log_info "Laravel Installer already present"
     fi
 
     # PHPMonitor
