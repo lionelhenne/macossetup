@@ -25,6 +25,7 @@ An interactive TUI-based installer that lets you choose which components to inst
 **Module 3: Web Development (Valet)** (Default: Yes)
 - ✅ Adds Homebrew taps for PHP (shivammathur)
 - ✅ Installs and configures [Laravel Valet](https://laravel.com/docs/12.x/valet)
+- ✅ Installs [Laravel Installer](https://laravel.com/docs/12.x/installation)
 - ✅ Sets up Valet in the `~/Sites` directory
 - ✅ Installs [PHP Monitor](https://phpmon.app/) with integrity verification
 - ✅ Creates a `phpinfo` directory with SSL certificate
@@ -110,7 +111,6 @@ The following packages are installed via [Homebrew](https://brew.sh/):
 - [DaisyDisk](https://daisydiskapp.com/)
 - [Setapp](https://setapp.com/)
 - [Suspicious Package](https://www.mothersruin.com/software/SuspiciousPackage/)
-- [Tuxera NTFS](https://www.tuxera.com/products/tuxera-ntfs-for-mac/)
 - [VirtualBuddy](https://virtualbuddy.app/)
 
 **Media**
