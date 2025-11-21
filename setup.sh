@@ -216,9 +216,9 @@ module_core() {
         mkdir -p "$HOME/.ssh"
         chmod 700 "$HOME/.ssh"
         cat <<EOF > "$HOME/.ssh/config"
+Include ~/.ssh/config.local
 Host *
     IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
 Host github.com
     HostName github.com
     User git
@@ -226,7 +226,18 @@ EOF
         chmod 600 "$HOME/.ssh/config"
         log_success "SSH config created"
     else
-        log_info "SSH config already exists"
+        if ! grep -q "Include ~/.ssh/config.local" "$HOME/.ssh/config"; then
+            log_info "Backing up existing SSH config to ~/.ssh/config.bak"
+            cp "$HOME/.ssh/config" "$HOME/.ssh/config.bak"
+            {
+                echo "Include ~/.ssh/config.local"
+                cat "$HOME/.ssh/config"
+            } > "$HOME/.ssh/config.tmp" && mv "$HOME/.ssh/config.tmp" "$HOME/.ssh/config"
+            chmod 600 "$HOME/.ssh/config"
+            log_success "Updated SSH config with Include directive"
+        else
+            log_info "SSH config already includes ~/.ssh/config.local"
+        fi
     fi
 
     # Node/FNM
