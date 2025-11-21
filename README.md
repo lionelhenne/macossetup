@@ -134,23 +134,37 @@ Over 50 professional fonts including:
 - **Display**: Alfa Slab One, Gilbert, Licorice, Redacted Script, Unica One, Yeseva One
 - **Emoji & Symbols**: Noto Color Emoji, Noto Emoji, Noto Sans, Noto Sans Display, Noto Sans JP, Noto Sans Mono, Noto Sans Symbols, Noto Serif, Noto Serif Display, Noto Serif Hentaigana, Noto Serif JP
 
+## `postinstall.sh` – Post-Installation Secrets Assistant
+
+A script to configure secrets and SSH keys from 1Password:
+
+- ✅ Selects and configures Git signing keys from 1Password
+- ✅ Injects SSH host configurations from 1Password
+- ✅ Configures Git with the selected signing key
+
 ## Installation
 
-### Quick Install (Recommended)
+### Quick Install
 
-Clone and run the interactive installer:
+Clone and run the interactive installers:
 
 ```bash
 git clone https://github.com/lionelhenne/macossetup.git
 cd macossetup
 chmod +x setup.sh
+chmod +x postinstall.sh
 ./setup.sh
+./postinstall.sh
 ```
 
-### Remote Install (One-liner)
+### Remote Install (One-liners)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/setup.sh | /bin/bash
+```
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lionelhenne/macossetup/refs/heads/main/postinstall.sh | /bin/bash
 ```
 
 ## Features
