@@ -559,9 +559,10 @@ main() {
 
     echo
     log_success "Installation sequence completed! 🚀"
-
-    echo -e "${YELLOW}⚠️ ACTION REQUIRED: Update ~/.gitconfig.local with your SSH public key (stored in 1Password)!${RESET}"
     echo -e "You can reload your shell with: ${BOLD}source ~/.zshrc${RESET}"
+    echo -e "${YELLOW}⚠️  Action required:${RESET}"
+    echo -e "   1. Log into 1Password"
+    echo -e "   2. Run ${BOLD}postinstall.sh${RESET} (SSH/Git setup)"
 }
 
 main
