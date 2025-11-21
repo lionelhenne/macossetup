@@ -251,6 +251,17 @@ EOF
     cd "$HOME/.dotfiles"
     stow . --restow || log_warning "Stow had some conflicts"
 
+    # Git Local Config Template
+    if [ ! -f "$HOME/.gitconfig.local" ]; then
+        log_info "Creating ~/.gitconfig.local template..."
+        cat <<EOF > "$HOME/.gitconfig.local"
+[user]
+    signingkey = YOUR_SSH_PUBLIC_KEY_HERE
+EOF
+    else
+        log_info "~/.gitconfig.local already exists"
+    fi
+
     # Folders
     mkdir -p "$HOME/Sites" "$HOME/Developer"
     
@@ -548,6 +559,8 @@ main() {
 
     echo
     log_success "Installation sequence completed! 🚀"
+
+    echo -e "${YELLOW}⚠️ ACTION REQUIRED: Update ~/.gitconfig.local with your SSH public key (stored in 1Password)!${RESET}"
     echo -e "You can reload your shell with: ${BOLD}source ~/.zshrc${RESET}"
 }
 
