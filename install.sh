@@ -41,18 +41,20 @@ show_menu() {
     echo "2) Web Development"
     echo "3) Databases"
     echo "4) Applications (Casks)"
-    echo "5) Fonts"
+    echo "5) Mac App Store"
+    echo "6) Fonts"
     echo "0) Exit"
     echo
 
-    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-5):${RESET} ")" choice
+    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-6):${RESET} ")" choice
 
     case "$choice" in
         1) run_module "identity" ;;
         2) run_module "webdev" ;;
         3) run_module "databases" ;;
         4) run_module "casks" ;;
-        5) run_module "fonts" ;;
+        5) run_module "mas" ;;
+        6) run_module "fonts" ;;
         0) log_info "Exiting"; exit 0 ;;
         *) log_error "Invalid choice: $choice" ;;
     esac
