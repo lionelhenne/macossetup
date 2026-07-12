@@ -39,18 +39,20 @@ show_menu() {
 
     echo "1) Identity (Git/SSH)"
     echo "2) Web Development"
-    echo "3) Applications (Casks)"
-    echo "4) Fonts"
+    echo "3) Databases"
+    echo "4) Applications (Casks)"
+    echo "5) Fonts"
     echo "0) Exit"
     echo
 
-    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-4):${RESET} ")" choice
+    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-5):${RESET} ")" choice
 
     case "$choice" in
         1) run_module "identity" ;;
         2) run_module "webdev" ;;
-        3) run_module "casks" ;;
-        4) run_module "fonts" ;;
+        3) run_module "databases" ;;
+        4) run_module "casks" ;;
+        5) run_module "fonts" ;;
         0) log_info "Exiting"; exit 0 ;;
         *) log_error "Invalid choice: $choice" ;;
     esac

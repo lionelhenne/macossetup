@@ -43,7 +43,8 @@ attached to the process, as is the case with `curl | bash`.
 | Module | What it does |
 |---|---|
 | `identity` | Git signing key + SSH config, sourced from 1Password |
-| `webdev` | PHP, Composer, Laravel Valet, Node.js (fnm), MySQL, PostgreSQL |
+| `webdev` | PHP, Composer, Laravel Valet, Node.js (fnm) |
+| `databases` | MySQL and/or PostgreSQL, each optional |
 | `casks` | GUI applications ([`inventory/Brewfile.casks`](inventory/Brewfile.casks)) |
 | `fonts` | Font collection ([`inventory/Brewfile.fonts`](inventory/Brewfile.fonts)) |
 
