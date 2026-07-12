@@ -48,6 +48,7 @@ attached to the process, as is the case with `curl | bash`.
 | `casks` | GUI applications ([`inventory/Brewfile.casks`](inventory/Brewfile.casks)) |
 | `mas` | Mac App Store applications ([`inventory/Brewfile.mas`](inventory/Brewfile.mas)) |
 | `fonts` | Font collection ([`inventory/Brewfile.fonts`](inventory/Brewfile.fonts)) |
+| `defaults` | macOS system preferences (`defaults write`) |
 
 See my related dotfiles: [macOS Dotfiles](https://github.com/lionelhenne/dotfiles)
 

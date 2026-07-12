@@ -43,10 +43,11 @@ show_menu() {
     echo "4) Applications (Casks)"
     echo "5) Mac App Store"
     echo "6) Fonts"
+    echo "7) macOS Defaults"
     echo "0) Exit"
     echo
 
-    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-6):${RESET} ")" choice
+    read -r -p "$(echo -e "${MAGENTA}${BOLD}USER${RESET}  ${SILVER}Select module (0-7):${RESET} ")" choice
 
     case "$choice" in
         1) run_module "identity" ;;
@@ -55,6 +56,7 @@ show_menu() {
         4) run_module "casks" ;;
         5) run_module "mas" ;;
         6) run_module "fonts" ;;
+        7) run_module "defaults" ;;
         0) log_info "Exiting"; exit 0 ;;
         *) log_error "Invalid choice: $choice" ;;
     esac
