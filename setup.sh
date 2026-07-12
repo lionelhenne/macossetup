@@ -1,9 +1,10 @@
 #!/bin/bash
 #
 # macOS bootstrap. Must run standalone (curl-pipeable): nothing else is on
-# disk yet, so this file never sources lib/_common.sh and never prompts for
-# input. Command Line Tools are installed by us, not left to Homebrew's own
-# installer, specifically so this works with no TTY (see
+# disk yet — neither this repo nor the dotfiles that provide
+# ~/.local/lib/_common.sh — so this file never sources it and never prompts
+# for input. Command Line Tools are installed by us, not left to Homebrew's
+# own installer, specifically so this works with no TTY (see
 # ensure_command_line_tools below). Once this finishes, the real repo is
 # cloned locally and ./install.sh takes over for anything interactive.
 
@@ -17,7 +18,7 @@ abort() {
 [[ -z "${BASH_VERSION:-}" ]] && abort "Bash is required to interpret this script."
 
 # ==============================================================================
-# COLORS & LOGGING (inline copy of lib/_common.sh — see header note above)
+# COLORS & LOGGING (inline copy of ~/.local/lib/_common.sh — see header note above)
 # ==============================================================================
 
 readonly CYAN=$'\033[38;5;51m'

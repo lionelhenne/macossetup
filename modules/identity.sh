@@ -126,7 +126,8 @@ run() {
     # Get public key
     log_info "Reading public key..."
 
-    local public_key=$(op read "op://$key_vault/$key_id/public key" 2>/dev/null)
+    local public_key
+    public_key=$(op read "op://$key_vault/$key_id/public key" 2>/dev/null)
 
     if [[ -z "$public_key" ]]; then
         log_error "Failed to read public key"
@@ -246,7 +247,8 @@ check_ssh_config_local() {
     # Create .ssh/config.local from 1Password
     log_info "Fetching SSH hosts config from 1Password..."
 
-    local ssh_hosts_content=$(op item get "SSH_HOSTS_CONFIG" --fields label=notesPlain 2>/dev/null | tr -d '"')
+    local ssh_hosts_content
+    ssh_hosts_content=$(op item get "SSH_HOSTS_CONFIG" --fields label=notesPlain 2>/dev/null | tr -d '"')
 
     if [[ -z "$ssh_hosts_content" ]]; then
         log_warn "SSH_HOSTS_CONFIG note not found in 1Password"
