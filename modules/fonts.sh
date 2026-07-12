@@ -17,7 +17,4 @@ run() {
         echo
         log_warn "Some fonts may have failed or were already installed"
     fi
-
-    echo
-    log_success "Fonts setup completed!"
 }

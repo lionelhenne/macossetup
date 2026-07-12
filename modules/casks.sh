@@ -13,7 +13,4 @@ run() {
         echo
         log_warn "Some applications may have failed or were already installed"
     fi
-
-    echo
-    log_success "Applications setup completed!"
 }
