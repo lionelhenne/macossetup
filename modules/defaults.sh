@@ -26,6 +26,8 @@ run() {
     defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
     # Disable the two-finger swipe gesture for back/forward page navigation
     defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool false
+    # Disable natural (reversed) scrolling direction
+    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
     # Fast key repeat rate
     defaults write NSGlobalDomain KeyRepeat -int 2
     # Short delay before key repeat kicks in
@@ -34,12 +36,21 @@ run() {
     defaults write NSGlobalDomain NSCloseAlwaysConfirmsChanges -bool true
     # Use the "Funk" alert sound instead of the default
     defaults write NSGlobalDomain com.apple.sound.beep.sound -string "/System/Library/Sounds/Funk.aiff"
-    # Accessibility Zoom: hold Ctrl while scrolling to zoom in/out
-    defaults write NSGlobalDomain HIDScrollZoomModifierMask -int 262144
     # App Shortcuts (all applications): rebind "Save As..." to Shift+Cmd+S
     # (French and English menu item labels both need an entry)
     defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Enregistrer sous..." '@$s'
     defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Save As…" '@$s'
+
+    # Accessibility > Zoom. com.apple.universalaccess is TCC-protected since macOS
+    # Monterey: writes fail with "Could not write domain" until the terminal app
+    # running this script is granted Full Disk Access (System Settings > Privacy
+    # & Security > Full Disk Access). Non-fatal so the rest of the module still runs.
+    # Use scroll gesture with modifier keys to zoom
+    defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true || log_warn "Couldn't write com.apple.universalaccess — grant Full Disk Access to this terminal and re-run"
+    # Zoom with Ctrl held while scrolling
+    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144 || log_warn "Couldn't write com.apple.universalaccess — grant Full Disk Access to this terminal and re-run"
+    # Advanced...: after a zoom, image moves continuously with the pointer
+    defaults write com.apple.universalaccess closeViewPanningMode -int 0 || log_warn "Couldn't write com.apple.universalaccess — grant Full Disk Access to this terminal and re-run"
 
     # Trackpad (built-in): enable tap to click
     defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -96,6 +107,10 @@ run() {
     defaults write com.apple.finder ShowRecentTags -bool false
     # Finder: skip the confirmation warning when emptying the Trash
     defaults write com.apple.finder WarnOnEmptyTrash -bool false
+    # Desktop icon view: sort by grid, 64px icons, label below with info and preview
+    defaults write com.apple.finder DesktopViewSettings -dict-add IconViewSettings '<dict><key>arrangeBy</key><string>grid</string><key>gridSpacing</key><integer>54</integer><key>iconSize</key><integer>64</integer><key>labelOnBottom</key><true/><key>showIconPreview</key><true/><key>showItemInfo</key><true/><key>textSize</key><integer>12</integer></dict>'
+    # Show the ~/Library folder (Finder > Home folder view options > "Show Library Folder")
+    chflags nohidden ~/Library
 
     # Desktop & Dock: no margins around tiled windows
     defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
