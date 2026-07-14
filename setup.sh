@@ -238,8 +238,9 @@ clone_dotfiles() {
         brew install stow
         
         log_info "Applying dotfiles with Stow..."
-        # Sécurité : on s'assure que ~/.config existe pour éviter que stow ne crée un lien global foireux
-        mkdir -p "$HOME/.config"
+        # Sécurité : on s'assure que ces dossiers existent pour éviter que stow ne crée un lien global foireux
+        # (ex: ~/.local entier symlinké vers le repo si ~/.local/bin et ~/.local/lib n'existent pas encore)
+        mkdir -p "$HOME/.config" "$HOME/.local/bin" "$HOME/.local/lib"
         
         cd "$dotfiles_dir"
         if stow .; then
