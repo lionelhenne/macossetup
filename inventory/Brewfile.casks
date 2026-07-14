@@ -1,10 +1,7 @@
-# brew "gum"
-# brew "jq"
 # brew "php@8.4", link: true
-cask "adobe-acrobat-reader"
-cask "adobe-creative-cloud"
+# cask "adobe-acrobat-reader"
+# cask "adobe-creative-cloud"
 cask "affinity"
-cask "antigravity-cli"
 cask "appcleaner"
 cask "betterdisplay"
 cask "claude"
